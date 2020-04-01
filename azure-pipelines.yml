@@ -27,11 +27,5 @@ steps:
   inputs: 
     pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
 
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'Azure subscription 1 (cfd03d97-34f7-4a2b-8980-d9f18ae770ac)'
-    appName: 'ideatreestaging'
-    appType: webApp
-    package: '$(System.DefaultWorkingDirectory)'
-    customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
+
 
