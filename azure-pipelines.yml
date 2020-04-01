@@ -29,7 +29,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'cfd03d97-34f7-4a2b-8980-d9f18ae770ac'
+    azureSubscription: 'Azure subscription 1 (cfd03d97-34f7-4a2b-8980-d9f18ae770ac)'
     appName: 'ideatreestaging'
     appType: webApp
     package: '$(System.DefaultWorkingDirectory)'
