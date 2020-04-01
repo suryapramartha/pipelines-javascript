@@ -22,11 +22,11 @@ steps:
 - task: CopyFiles@2
   inputs:
     Contents: '**' ## update to match what you want to copy
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: 'dist/'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: 'dist/'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
