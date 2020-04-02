@@ -19,9 +19,12 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-- task: CopyFiles@2
-  inputs:
-    Contents: 'dist/**' ## update to match what you want to copy
+  
+- task: CopyFiles@2 
+  inputs: 
+    SourceFolder: '$(System.DefaultWorkingDirectory)' 
+    Contents: |
+     **/* !.git/**/* !node_modules/**/* 
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
