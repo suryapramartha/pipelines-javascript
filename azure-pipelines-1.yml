@@ -22,7 +22,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**' ## update to match what you want to copy
+    Contents: 'dist/**' ## update to match what you want to copy
     TargetFolder: $(Build.ArtifactStagingDirectory)
 
 - task: ArchiveFiles@2
@@ -30,6 +30,11 @@ steps:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
