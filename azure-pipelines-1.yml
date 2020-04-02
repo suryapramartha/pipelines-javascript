@@ -22,7 +22,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**\*.zip' ## update to match what you want to copy
+    Contents: '**' ## update to match what you want to copy
     TargetFolder: d:\a\r1\a\
 
 - task: ArchiveFiles@2
