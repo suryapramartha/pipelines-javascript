@@ -22,22 +22,16 @@ steps:
 - task: CopyFiles@2
   inputs:
     Contents: '**' ## update to match what you want to copy
-    TargetFolder: 'd:/a/r1/a'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: 'd:/a/r1/a/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
+  inputs: 
+    pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+
+- task: AzureWebApp@1
   inputs:
-    PathtoPublish: 'd:/a/r1/a'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-
-
-
+    azureSubscription: 'Azure subscription 1 (cfd03d97-34f7-4a2b-8980-d9f18ae770ac)'
+    appName: 'ideatreestaging'
+    appType: webApp
+    package: '$(System.DefaultWorkingDirectory)'
+    customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
