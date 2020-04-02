@@ -35,4 +35,4 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs: 
-    pathtoPublish: d:\a\r1\a\# dist or build files
+    pathtoPublish: d:\a\r1\a\ 
