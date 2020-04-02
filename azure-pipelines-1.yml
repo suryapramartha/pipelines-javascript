@@ -23,16 +23,13 @@ steps:
 - task: CopyFiles@2
   inputs:
     Contents: '**' ## update to match what you want to copy
-    TargetFolder: d:\a\r1\a\
+    TargetFolder: $(Build.ArtifactStagingDirectory)
 
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: 'd:\a\r1\a\$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)$(Build.BuildId).zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
-  inputs: 
-    pathtoPublish: d:\a\r1\a\ 
