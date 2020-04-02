@@ -20,9 +20,12 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: CopyFiles@2
-  inputs:
-    Contents: '**' ## update to match what you want to copy
+
+- task: CopyFiles@2 
+  inputs: 
+    SourceFolder: '$(System.DefaultWorkingDirectory)' 
+    Contents: |
+     **/* !.git/**/* !node_modules/**/* 
     TargetFolder: d:\a\r1\a\
 
 - task: ArchiveFiles@2
