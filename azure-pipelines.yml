@@ -19,8 +19,22 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+  
+- task: CopyFiles@2 
+  inputs: 
+    SourceFolder: '$(System.DefaultWorkingDirectory)' 
+    Contents: |
+     **/* !.git/**/* !node_modules/**/* 
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
+  inputs: 
+    pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+
+- task: AzureWebApp@1
   inputs:
-    artifactName: dist
-    pathtoPublish: 'dist'
+    azureSubscription: 'Azure subscription 1 (cfd03d97-34f7-4a2b-8980-d9f18ae770ac)'
+    appName: 'ideatreestaging'
+    appType: webApp
+    package: '$(System.DefaultWorkingDirectory)'
+    customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
